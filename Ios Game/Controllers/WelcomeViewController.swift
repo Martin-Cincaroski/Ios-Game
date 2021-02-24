@@ -16,6 +16,7 @@ class WelcomeViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
 
+    
     @IBAction func onContinue(_ sender: Any) {
         
         if Auth.auth().currentUser != nil, let id = Auth.auth().currentUser?.uid {
@@ -37,5 +38,11 @@ class WelcomeViewController: UIViewController {
         }
         
     }
+    
+}
+
+func ShowErrorAlert() {
+    let alert = UIAlertController(title: "Error", message: "\(username)", preferredStyle: .alert)
+    
     
 }

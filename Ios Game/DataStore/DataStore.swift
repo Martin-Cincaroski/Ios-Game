@@ -127,4 +127,18 @@ class DataStore {
     usersListener?.remove()
     usersListener = nil
   }
+    func checkForExistingUsername(_ username: String,_ completion: @escaping (_ exists: Bool,_ error: Error?) -> Void) {
+            
+        let usersRef = database
+            .collection(FirebaseCollections.users.rawValue)
+            .whereField("username", isEqualTo: username)
+        
+        usersRef.getDocuments { (snapshot, error) in
+            if let snapshot = snapshot, snapshot.documents.count == 0 {
+                completion(false,nil)
+            }
+            completion(true,error)
+        }
+    }
 }
+
